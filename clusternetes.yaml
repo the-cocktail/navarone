@@ -1,0 +1,47 @@
+imports:
+- path: clusternetes.py
+
+resources:
+- name: cluster-de-prueba
+  type: clusternetes.py
+  properties:
+    # Obligatorio
+    zone: 'europe-west4-a'
+    initialClusterVersion: '1.10.2-gke.3'
+    # Opcional, comentar si no interesa
+    # LABELS
+    # resourceLabels: { "environment": "production", "kubernetes": "true" }
+    # MULTIZONA
+    # additionalLocations: [
+    # 'europe-west4-b',
+    # 'europe-west4-c',
+    # ]
+    # NODE POOLS
+    clusterNodepools:
+      default:
+        name: 'default'
+        initialNodeCount: 1
+        machineType: 'n1-standard-4'
+        autoscalingEnabled: True
+        autoscalingMinNodeCount: 1
+        autoscalingMaxNodeCount: 1
+        managementAutoUpgrade: True
+        managementAutoRepair: True
+        # oauthScopes: [
+        # 'https://www.googleapis.com/auth/compute',
+        # 'https://www.googleapis.com/auth/devstorage.read_only',
+        # 'https://www.googleapis.com/auth/logging.write',
+        # 'https://www.googleapis.com/auth/monitoring'
+        # ]
+        # }
+      highmem:
+        name: 'highmem'
+        initialNodeCount: 1
+        machineType: 'n1-standard-4'
+        autoscalingEnabled: True
+        autoscalingMinNodeCount: 1
+        autoscalingMaxNodeCount: 1
+        managementAutoUpgrade: True
+        managementAutoRepair: True
+
+
